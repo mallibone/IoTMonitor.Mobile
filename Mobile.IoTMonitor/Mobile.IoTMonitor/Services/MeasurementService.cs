@@ -3,6 +3,8 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Reactive.Subjects;
+using System.Reactive.Linq;
 
 namespace Mobile.IoTMonitor
 {
@@ -11,15 +13,17 @@ namespace Mobile.IoTMonitor
         private HubConnection _connection;
         private const string backendUrl = "https://iotdemofunction.azurewebsites.net/api/";
         //private const string backendUrl = "http://localhost:7071/api/";
-        public event EventHandler<Measurement> NewMeasurement;
+        //public event EventHandler<Measurement> NewMeasurement;
+        private Subject<Measurement> _newMeasurement = new Subject<Measurement>();
 
         public MeasurementService()
         {
             _connection = new HubConnectionBuilder()
-                //.WithUrl("https://iotdemofunction.azurewebsites.net/api/IoTPlayground")
                 .WithUrl(backendUrl)
                 .Build();
         }
+
+        public IObservable<Measurement> NewMeasurement => _newMeasurement.AsObservable();
 
         public async Task Connect()
         {
@@ -28,7 +32,7 @@ namespace Mobile.IoTMonitor
             _connection.On<string>("measurement", (messageString) =>
             {
                 var message = JsonConvert.DeserializeObject<Measurement>(messageString);
-                NewMeasurement?.Invoke(this, message);
+                _newMeasurement.OnNext(message);
                 Debug.WriteLine(messageString);
             });
 
@@ -47,8 +51,6 @@ namespace Mobile.IoTMonitor
             await _connection.DisposeAsync();
 
             _connection = new HubConnectionBuilder()
-                //.WithUrl("https://iotdemofunction.azurewebsites.net/api/IoTPlayground")
-                //.WithUrl("https://iotdemofunction.azurewebsites.net/api/negotiate")
                 .WithUrl(backendUrl)
                 .Build();
         }

@@ -1,35 +1,30 @@
-﻿using Microsoft.AspNetCore.SignalR.Client;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Mobile.IoTMonitor.ViewModels;
 using Xamarin.Forms;
 
 namespace Mobile.IoTMonitor
 {
     public partial class MainPage : ContentPage
     {
-        private HubConnection _connection;
-        private MeasurementService _measurementService = new MeasurementService();
+        private MainViewModel _vm;
 
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = Vm;
         }
+
+        internal MainViewModel Vm => _vm ?? (_vm = new MainViewModel());
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await _measurementService.Connect();
-
+            await Vm.Init();
         }
 
-        protected override async void OnDisappearing()
+        protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            await _measurementService.Disconnect();
+            Vm.Dispose();
         }
     }
 }

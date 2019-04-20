@@ -6,7 +6,7 @@ namespace Mobile.IoTMonitor
 {
     interface IMeasurementService
     {
-        event EventHandler<Measurement> NewMeasurement;
+        IObservable<Measurement> NewMeasurement { get; }
 
         Task Connect();
         Task Disconnect();

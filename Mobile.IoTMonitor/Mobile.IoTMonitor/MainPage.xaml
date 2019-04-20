@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Mobile.IoTMonitor"
@@ -18,13 +18,13 @@
         </Grid.ColumnDefinitions>-->
 
         <BoxView BackgroundColor="Accent" />
-        <Label Text="12"
+        <Label Text="{Binding Temperature}"
                HorizontalOptions="Center"
                Grid.Row="1" />
-        <Label Text="12"
+        <Label Text="{Binding Humidity}"
                HorizontalOptions="Center"
                Grid.Row="2" />
-        <Label Text="12"
+        <Label Text="{Binding Pressure}"
                HorizontalOptions="Center"
                Grid.Row="3" />
 
