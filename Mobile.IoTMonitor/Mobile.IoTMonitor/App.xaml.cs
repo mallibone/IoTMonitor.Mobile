@@ -8,6 +8,8 @@ namespace Mobile.IoTMonitor
     {
         public App()
         {
+            
+                Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(SyncfusionLicenseKey.LicenseKey);
             InitializeComponent();
 
             MainPage = new MainPage();
