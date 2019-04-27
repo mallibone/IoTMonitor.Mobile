@@ -7,9 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mobile.IoTMonitor.Android",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mobile.IoTMonitor.iOS", "Mobile.IoTMonitor\Mobile.IoTMonitor.iOS\Mobile.IoTMonitor.iOS.csproj", "{385B5EA6-B244-41BB-962C-1796116D7B3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mobile.IoTMonitor", "Mobile.IoTMonitor\Mobile.IoTMonitor\Mobile.IoTMonitor.csproj", "{75E296DD-1259-4673-B59C-BCAB86FE2712}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mobile.IoTMonitor", "Mobile.IoTMonitor\Mobile.IoTMonitor\Mobile.IoTMonitor.csproj", "{75E296DD-1259-4673-B59C-BCAB86FE2712}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mobile.IoTMonitor.UWP", "Mobile.IoTMonitor\Mobile.IoTMonitor.UWP\Mobile.IoTMonitor.UWP.csproj", "{980001C3-6608-44F1-BA25-B65093C9895A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console.IoTMonitor", "Console.IoTMonitor\Console.IoTMonitor.csproj", "{8906705E-CBD3-49CA-9EB6-CA70F747170B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{D6456BFD-8793-43C7-BFEE-F5801251FA32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -161,9 +165,43 @@ Global
 		{980001C3-6608-44F1-BA25-B65093C9895A}.Release|x86.ActiveCfg = Release|x86
 		{980001C3-6608-44F1-BA25-B65093C9895A}.Release|x86.Build.0 = Release|x86
 		{980001C3-6608-44F1-BA25-B65093C9895A}.Release|x86.Deploy.0 = Release|x86
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Debug|ARM.Build.0 = Debug|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Debug|x64.Build.0 = Debug|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Debug|x86.Build.0 = Debug|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Release|ARM.ActiveCfg = Release|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Release|ARM.Build.0 = Release|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Release|ARM64.Build.0 = Release|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Release|iPhone.Build.0 = Release|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Release|x64.ActiveCfg = Release|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Release|x64.Build.0 = Release|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Release|x86.ActiveCfg = Release|Any CPU
+		{8906705E-CBD3-49CA-9EB6-CA70F747170B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CFE4FA6E-8790-4FBB-8466-A67392D8D661} = {D6456BFD-8793-43C7-BFEE-F5801251FA32}
+		{385B5EA6-B244-41BB-962C-1796116D7B3D} = {D6456BFD-8793-43C7-BFEE-F5801251FA32}
+		{75E296DD-1259-4673-B59C-BCAB86FE2712} = {D6456BFD-8793-43C7-BFEE-F5801251FA32}
+		{980001C3-6608-44F1-BA25-B65093C9895A} = {D6456BFD-8793-43C7-BFEE-F5801251FA32}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96951669-10E8-4B95-A785-0E3873B6DE18}
