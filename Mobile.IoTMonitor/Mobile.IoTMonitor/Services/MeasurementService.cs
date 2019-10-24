@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Reactive.Subjects;
 using System.Reactive.Linq;
+using System.Collections.Generic;
 
 namespace Mobile.IoTMonitor
 {
@@ -31,8 +32,11 @@ namespace Mobile.IoTMonitor
 
             _connection.On<string>("measurement", (messageString) =>
             {
-                var message = JsonConvert.DeserializeObject<Measurement>(messageString);
-                _newMeasurement.OnNext(message);
+                var messages = JsonConvert.DeserializeObject<IEnumerable<Measurement>>(messageString);
+                foreach (var message in messages)
+                {
+                    _newMeasurement.OnNext(message);
+                }
                 Debug.WriteLine(messageString);
             });
 
