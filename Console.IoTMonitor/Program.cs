@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Console.IoTMonitor
 {
@@ -19,7 +20,7 @@ namespace Console.IoTMonitor
             // Attach Message handler
             connect.On<string>("measurement", (messageString) =>
             {
-                var message = JsonConvert.DeserializeObject<Measurement>(messageString);
+                var message = JsonConvert.DeserializeObject<IEnumerable<Measurement>>(messageString);
                 System.Console.WriteLine("Message Received: " + messageString);
             });
 
