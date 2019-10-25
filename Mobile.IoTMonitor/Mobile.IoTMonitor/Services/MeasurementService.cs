@@ -6,12 +6,15 @@ using Newtonsoft.Json;
 using System.Reactive.Subjects;
 using System.Reactive.Linq;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.IO;
 
 namespace Mobile.IoTMonitor
 {
     class MeasurementService : IMeasurementService
     {
         private HubConnection _connection;
+        private readonly HttpClient _httpClient;
         private const string backendUrl = "https://iotdemofunction.azurewebsites.net/api/";
         //private const string backendUrl = "http://localhost:7071/api/";
         //public event EventHandler<Measurement> NewMeasurement;
@@ -22,6 +25,7 @@ namespace Mobile.IoTMonitor
             _connection = new HubConnectionBuilder()
                 .WithUrl(backendUrl)
                 .Build();
+            _httpClient = new HttpClient();
         }
 
         public IObservable<Measurement> NewMeasurement => _newMeasurement.AsObservable();
@@ -57,6 +61,13 @@ namespace Mobile.IoTMonitor
             _connection = new HubConnectionBuilder()
                 .WithUrl(backendUrl)
                 .Build();
+        }
+
+        public async void UpdateColor(MyColor myColor)
+        {
+            var serializedPayload = JsonConvert.SerializeObject(myColor);
+
+            await _httpClient.PostAsync(Path.Combine(backendUrl, "UpdateColor"), new StringContent(serializedPayload));
         }
     }
 }

@@ -55,5 +55,10 @@ namespace Mobile.IoTMonitor
             _timer.Elapsed -= RaiseNewMeasurement;
             _timer.Dispose();
         }
+
+        public void UpdateColor(MyColor myColor)
+        {
+            
+        }
     }
 }

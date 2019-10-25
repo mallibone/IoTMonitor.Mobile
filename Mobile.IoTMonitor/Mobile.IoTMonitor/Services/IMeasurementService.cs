@@ -10,5 +10,6 @@ namespace Mobile.IoTMonitor
 
         Task Connect();
         Task Disconnect();
+        void UpdateColor(MyColor myColor);
     }
 }

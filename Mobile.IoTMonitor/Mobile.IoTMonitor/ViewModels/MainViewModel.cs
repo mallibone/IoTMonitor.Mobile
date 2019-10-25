@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using ReactiveUI;
+using Xamarin.Forms;
 
 namespace Mobile.IoTMonitor.ViewModels
 {
@@ -14,6 +15,8 @@ namespace Mobile.IoTMonitor.ViewModels
         private float _pressure = 1f;
         private IMeasurementService _measurementService;
         private IDisposable _measurementSubscription;
+        private double _currentColor;
+        private Color _currentHexColor;
 
         public MainViewModel(IMeasurementService measurementService = null)
         {
@@ -23,7 +26,8 @@ namespace Mobile.IoTMonitor.ViewModels
         public async Task Init()
         {
             await _measurementService.Connect();
-            _measurementSubscription = _measurementService.NewMeasurement.Subscribe(msg => {
+            _measurementSubscription = _measurementService.NewMeasurement.Subscribe(msg =>
+            {
                 TemperatureLabel = msg.TemperatureUnit;
                 Temperature = msg.Temperature;
                 PressureLabel = msg.PressureUnit;
@@ -33,21 +37,44 @@ namespace Mobile.IoTMonitor.ViewModels
             });
         }
 
-        public string TemperatureLabel 
+        public double ColorValue
         {
-            get => _temperatureLabel; 
-            set => this.RaiseAndSetIfChanged(ref _temperatureLabel, value); 
-        }
-        public float Temperature 
-        {
-            get => _temperature; 
-            set => this.RaiseAndSetIfChanged(ref _temperature, value); 
+            get => _currentColor;
+            set
+            {
+                var color = Color.FromHsla(value, 0.8, 0.8);
+                HexColorValue = color;
+
+
+                _measurementService.UpdateColor(new MyColor { Red = color.R, Green = color.G, Blue = color.B, A = color.A });
+                this.RaiseAndSetIfChanged(ref _currentColor, value);
+            }
         }
 
-        public string PressureLabel 
+        public Color HexColorValue
         {
-            get => _pressureLabel; 
-            set => this.RaiseAndSetIfChanged(ref _pressureLabel, value); 
+            get => _currentHexColor; 
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _currentHexColor, value);
+            }
+        }
+
+        public string TemperatureLabel
+        {
+            get => _temperatureLabel;
+            set => this.RaiseAndSetIfChanged(ref _temperatureLabel, value);
+        }
+        public float Temperature
+        {
+            get => _temperature;
+            set => this.RaiseAndSetIfChanged(ref _temperature, value);
+        }
+
+        public string PressureLabel
+        {
+            get => _pressureLabel;
+            set => this.RaiseAndSetIfChanged(ref _pressureLabel, value);
         }
         public float Pressure
         {
@@ -55,10 +82,10 @@ namespace Mobile.IoTMonitor.ViewModels
             set => this.RaiseAndSetIfChanged(ref _pressure, value);
         }
 
-        public string HumidityLabel 
+        public string HumidityLabel
         {
-            get => _humidtyLabel; 
-            set => this.RaiseAndSetIfChanged(ref _humidtyLabel, value); 
+            get => _humidtyLabel;
+            set => this.RaiseAndSetIfChanged(ref _humidtyLabel, value);
         }
         public float Humidity
         {
